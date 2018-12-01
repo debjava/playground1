@@ -1,0 +1,158 @@
+/*
+.hyperlink {
+	-fx-text-fill: white;
+}
+ */
+ 
+/**************** Custom Hyperlink CSS *******************/  
+.leftNavHyperLink {
+	-fx-text-fill: black;
+	-fx-font-size: 10pt;
+	-fx-underline: false;
+}  
+
+.leftNavHyperLink:hover {
+	/*-fx-text-fill: #606060;*/
+	-fx-underline: true;
+	
+}
+
+.hyperlinkSelection {
+	-fx-text-fill: blue;
+	-fx-font-size: 14pt;
+	-fx-text-fill: black;
+	-fx-text-fill: #098ee8;
+}
+
+/*
+.root {
+    -fx-background-image: url("https://www.google.com/images/srpr/logo3w.png");
+}
+
+*/
+
+/*******************************************************************************
+ *                                                                             *
+ * ComboBox, ChoiceBox COMMON                                                 *
+ *                                                                             *
+ ******************************************************************************/
+ 
+.combo-box .list-cell {
+	-fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.66667em; 
+}
+
+.combo-box-base  {
+    /*-fx-skin: "com.sun.javafx.scene.control.skin.ComboBoxBaseSkin";*/
+    -fx-background-color: white, white, white, white;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+/* To show the color inside dropdown items */
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background: -fx-accent;
+    -fx-background-color: lightblue;
+    -fx-text-fill: black;
+}
+
+/* To show already selected one */
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover {
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-text-fill: -fx-selection-bar-text;
+    /*-fx-border-color: #D3D3D3*/
+}
+
+/* For moving mouse pointer for hovering */
+.combo-box-base:hover {
+    -fx-color: -fx-hover-base;
+    -fx-background-color: transparent, #6699FF, transparent, transparent, white;
+}
+
+/* *************** Common Text Field and Text Area and JFXTextField ****************** */
+
+.text-field, .text-area {
+	/*-fx-border-color: #cccccc;*/
+	-fx-background-color: white;
+	/*-fx-border-radius: 4;
+	-fx-background-radius: 4;*/
+	-fx-effect: innershadow(gaussian, transparent, 0, 0, 0, 0);
+}
+
+.text-field:focused, .text-area:focused {
+	-fx-border-color: #66afe9;
+	 -fx-effect: dropshadow(gaussian, #66afe9, 10, 0, 0, 0);
+}
+
+.input-line {
+	/* 
+	-jfx-focus-color: red;
+    -jfx-unfocus-color: red;
+    -fx-pref-height:0;
+    * 
+    */
+}
+ 
+.text-field .input-line {
+    -fx-pref-height:0.1;
+    -fx-pref-width: 0;
+}
+
+
+
+
+/* ---------TitledPane --------- */
+
+.titled-pane {
+	-fx-border-color: #337ab7;
+}
+
+.titled-pane > .title {
+	/*-fx-background-color: #f5f5f5;*/
+	-fx-background-color: #337ab7;
+	-fx-border-color: #dddddd;
+	/*-fx-background-insets: 5, 1, 5;*/
+	-fx-background-radius: 3 3 0 0, 2 2 0 0, 1 1 0 0;
+	/* -fx-border-radius: 3 3 0 0, 2 2 0 0, 1 1 0 0; */
+	-fx-padding: 11
+}
+
+.titled-pane > .content {
+	-fx-background-color: white;
+	-fx-background-radius: 0 0 4 4;
+	/*-fx-border-radius: 0 0 4 4;*/
+	/* -fx-border-color: #337ab7; */
+	/*-fx-padding: -11;*/
+}
+
+/******************************************************
+ * Custom Round Shape Button 
+ *****************************************************/
+ .roundButton {
+    /*-fx-pref-height:15px;*/   
+    /*-fx-pref-width:15px;*/
+    /* -fx-background-color: #0066CC; */
+    /*-fx-background-color: #098ee8;*/
+    -fx-background-color: linear-gradient(#098ee8, #098ee8);
+    -fx-background-radius: 25px;
+    -fx-border-radius: 20px;
+    -fx-alignment: CENTER;
+    /*-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,1);*/
+    /*-fx-effect: dropshadow(gaussian, #66afe9, 10, 0, 0, 0);*/
+    -fx-effect: innershadow(gaussian, blue, 15, 0, 0, 0);
+}
+
+.buttonType1 {
+    -fx-background-color: linear-gradient(#098ee8, #098ee8);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-effect: innershadow(gaussian, blue, 15, 0, 0, 0);
+}
+
+

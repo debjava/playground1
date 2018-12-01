@@ -1,0 +1,18 @@
+FROM java:8
+
+MAINTAINER Debadatta Mishra(DD)
+
+RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gz
+
+RUN tar xzf apache-tomcat-8.5.20.tar.gz -C /usr/local/
+
+ADD restful-basic-security-web.war /usr/local/apache-tomcat-8.5.20/webapps/
+
+# CMD apache-tomcat-8.5.20/bin/startup.sh && tail -f apache-tomcat-8.5.20/logs/catalina.out
+
+EXPOSE 8090
+
+CMD ["/usr/local/apache-tomcat-8.5.20/bin/catalina.sh", "run"]
+
+
+

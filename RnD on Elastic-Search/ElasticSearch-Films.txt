@@ -1,0 +1,209 @@
+ElasticSearch-Films
+===================
+Delete Index
+------------
+DELETE http://localhost:9200/films
+
+Create index
+------------
+PUT http://localhost:9200/films?pretty
+
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 2,
+    "analysis": {
+      "analyzer": {
+        "analyzer1": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "standard",
+            "lowercase",
+            "stop",
+            "kstem",
+            "ngram"
+          ]
+        },
+        "my_stop_analyzer":{ 
+               "type":"custom",
+               "tokenizer":"standard",
+               "filter":[
+                  "lowercase",
+                  "english_stop"
+               ]
+            }
+      },
+      "filter": {
+        "ngram": {
+          "type": "ngram",
+          "min_gram": 2,
+          "max_gram": 15
+        },
+        "english_stop":{
+               "type":"stop",
+               "stopwords":"_english_"
+            }
+      }
+    }
+  },
+  "mappings": {
+    "movies": {
+      "properties": {
+        "mid": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "text",
+          "store": true,
+          "search_analyzer": "analyzer1",
+          "analyzer": "analyzer1"
+        },
+        "description": {
+          "type": "text",
+          "store": true,
+          "search_analyzer": "analyzer1",
+          "analyzer": "analyzer1"
+        },
+        "genres": {
+          "type": "keyword",
+          "store": true
+        },
+		"language": {
+          "type": "keyword",
+          "store": true
+        },
+		"year": {
+          "type": "integer",
+          "store": true
+        },
+		"rating": {
+          "type": "float",
+          "store": true
+        },
+		"studio": {
+          "type": "text",
+          "store": true,
+		  "search_analyzer": "analyzer1",
+          "analyzer": "analyzer1"
+        },
+		"starcast": {
+          "type": "text",
+          "store": true,
+		  "search_analyzer": "analyzer1",
+          "analyzer": "analyzer1"
+        }
+      }
+    }
+  }
+}
+
+Bulk Posting
+-------------
+
+{ "create" : { "_id" : "1","_index" : "films", "_type" : "movies" } }
+{ "mid": 1, "language": "English", "starcast" : ["Brontis Jodorowsky", "Pamela Flores", "Jeremias Herskovits"],"year": "2013","rating": "7.2","studio": "Cary, North Carolina","title": "Iron Man 3", "genres": ["Action", "Adventure", "Science","Fiction"], "description": "When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution."}
+
+{ "create" : { "_id" : "2","_index" : "films", "_type" : "movies" } }
+{ "mid": 2, "language": "English", "starcast" : ["Henry Cavill", "Amy Adams", "Michael Shannon"],"year": "2013","rating": "7.1","studio": "Lone Pine, California, USA","title": "Man of Steel", "genres": ["Fantasy","Science"], "description": "When a young boy discovers that he has extraordinary powers, he decides to find out about his origin. He then learns to fight for Earth when it gets attacked by members of his own race."}
+
+{ "create" : { "_id" : "3","_index" : "films", "_type" : "movies" } }
+{ "mid": 3, "language": "English", "starcast" : ["Vin Diesel", "Paul Walker", "Dwayne Johnson"],"year": "2013","rating": "7.1","studio": "Shepperton Studios, Shepperton, Surrey, England, UK","title": "Fast & Furious 6", "genres": ["Action","Thriller"], "description": "When Hobbs has to catch a global team of mercenary drivers, he enlists the help of Domm and his team in exchange of full pardons for all their past crimes."}
+
+{ "create" : { "_id" : "4","_index" : "films", "_type" : "movies" } }
+{ "mid": 4, "language": "Spanish", "starcast" : ["Quim Gutiérrez", "José Coronado", "Marta Etur"],"year": "2013","rating": "6.1","studio": "Barcelona, Catalonia, Spain","title": "The Last Days", "genres": ["Science","Thriller"], "description": "Los Últimos Días is a 2013 Spanish science fiction thriller film directed by David and Àlex Pastor."}
+
+{ "create" : { "_id" : "5","_index" : "films", "_type" : "movies" } }
+{ "mid": 5, "language": "Spanish", "starcast" : ["Jessica Chastain", "Nikolaj Coster-Waldau", "Megan Charpentier"],"year": "2013","rating": "6.2","studio": "Cambridge, Ontario, Canada","title": "Mama", "genres": ["Horror","Thriller"], "description": "Two girls reside in a jungle after their parents get murdered. When they are rescued years later and begin a new life, they find that a shadowy feminine figure has accompanied them to their house."}
+
+{ "create" : { "_id" : "6","_index" : "films", "_type" : "movies" } }
+{ "mid": 6, "language": "Spanish", "starcast" : ["María Valverde", "Mario Casas", "Daniel Grao"],"year": "2013","rating": "6.2","studio": "Córdoba, Andalucía, Spain","title": "The Mule", "genres": ["Horror","Thriller"], "description": "A soldier protects a mule during the Spanish Civil War. Based on the novel by Juan Eslava Galan."}
+
+{ "create" : { "_id" : "7","_index" : "films", "_type" : "movies" } }
+{ "mid": 7, "language": "Hindi", "starcast" : ["Farhan Akhtar", "Sonam Kapoor", "Pavan Malhotra"],"year": "2013","rating": "8.3","studio": "Pattaya, Chonburi, Thailand","title": "Bhaag Milkha Bhaag", "genres": ["Drama","Action"], "description": "Milkha Singh or the 'Flying Sikh' overcomes many agonising obstacles to become a world champion, Olympian and one of India's most iconic athletes."}
+
+{ "create" : { "_id" : "8","_index" : "films", "_type" : "movies" } }
+{ "mid": 8, "language": "Hindi", "starcast" : ["Ranveer Singh", "Sonakshi Sinha", "Barun Chanda"],"year": "2013","rating": "7.4","studio": "Mumbai, Maharashtra, India","title": "Lootera", "genres": ["Drama","Romance"], "description": "Pakhi, an aristocrat's daughter, falls in love with an archaeologist in 1953 Bengal. However, unbeknownst to her, he leads a double life and eventually ends up breaking her heart and devastating her."}
+
+{ "create" : { "_id" : "9","_index" : "films", "_type" : "movies" } }
+{ "mid": 9, "language": "Hindi", "starcast" : ["Anupam Kher", "Manoj Bajpayee", "Akshay Kumar"],"year": "2013","rating": "8.0","studio": "Mumbai, Maharashtra, India","title": "Special 26", "genres": ["Crime","Action","Drama"], "description": "A team of cons pose as CBI officers and conduct raids to loot politicians and businessmen of their black money. With the real CBI on their trail, they decide to pull off their final and biggest act."}
+
+{ "create" : { "_id" : "10","_index" : "films", "_type" : "movies" } }
+{ "mid": 10, "language": "English", "starcast" : ["Tom Hardy", "Charlize Therone", "Nicholas Hoult"],"year": "2015","rating": "8.1","studio": "Namib Desert, Namibia","title": "Mad Max: Fury Road", "genres": ["Action","Adventure","Drama"], "description": "In an apocalyptic world, a tyrant rules over a stark desert, controlling every drop of water. Two rebels, one escaping grief and the other reaching out to her childhood, are the last hope for a few."}
+
+{ "create" : { "_id" : "11","_index" : "films", "_type" : "movies" } }
+{ "mid": 11, "language": "English", "starcast" : ["Chris Pratt", "Bryce Dallas Howard", "Ty Simpkins"],"year": "2015","rating": "7.0","studio": "Louisiana, USA ","title": "Jurassic World", "genres": ["Action","Adventure","Fiction","Thriller"], "description": "A theme park showcasing genetically-engineered dinosaurs turns into a nightmare for its tourists when one of the dinosaurs escapes its enclosure. An ex-military animal expert steps up to save the day."}
+
+{ "create" : { "_id" : "12","_index" : "films", "_type" : "movies" } }
+{ "mid": 12, "language": "English", "starcast" : ["Amy Schumer", "Bill Hader", "Brie Larson"],"year": "2015","rating": "6.3","studio": "Madison Square Garden, New York City, New York, USA","title": "Trainwreck", "genres": ["Comedy","Drama","Romance"], "description": "A young magazine writer is made to believe that relationships and marriage hold no value. However, a chance meeting with a sports doctor forces her to rethink her principles."}
+
+{ "create" : { "_id" : "13","_index" : "films", "_type" : "movies" } }
+{ "mid": 13, "language": "Spanish", "starcast" : ["Guillermo Francella", "Peter Lanzani", "Lili Popovich"],"year": "2015","rating": "7.0","studio": "Buenos Aires, Federal District, Argentina","title": "The Clan", "genres": ["Crime","Drama"], "description": "The Clan is a 2015 Argentine biographical crime film directed by Pablo Trapero. It was selected to be screened in the main competition section of the 72nd Venice International Film Festival where director Pablo Trapero won the Silver Lion."}
+
+{ "create" : { "_id" : "14","_index" : "films", "_type" : "movies" } }
+{ "mid": 14, "language": "Spanish", "starcast" : ["Imanol Arias", "Quim Gutiérrez", "Alexandra Jiménez"],"year": "2015","rating": "6.1","studio": "Barcelona, Catalonia, Spain ","title": "Spy Time", "genres": ["Action","Comedy"], "description": "Adolfo, a security guard, loses his girlfriend, becomes the target of a dangerous criminal, and learns his father is a secret agent. He is forced to leave his comfort zone to work with his father to survive."}
+
+{ "create" : { "_id" : "15","_index" : "films", "_type" : "movies" } }
+{ "mid": 15, "language": "Hindi", "starcast" : ["Ranveer Singh", "Priyanka Chopra", "Deepika Padukone"],"year": "2015","rating": "7.2","studio": "Mumbai,India","title": "Bajirao Mastani", "genres": ["Drama","Romance","Action"], "description": "The heroic Peshwa Bajirao, married to Kashibai, falls in love with Mastani, a warrior princess in distress. They struggle to make their love triumph amid opposition from his conservative family."}
+
+{ "create" : { "_id" : "16","_index" : "films", "_type" : "movies" } }
+{ "mid": 16, "language": "Hindi", "starcast" : [" Amitabh Bachchan", "Deepika Padukone", "Irrfan Khan"],"year": "2015","rating": "7.6","studio": "Kolkata, West Bengal, India","title": "Piku", "genres": ["Drama","Comedy"], "description": "A road trip to Kolkata brings Piku, an architect, closer to her ageing but nagging father Bhaskor Banerjee despite their disparate ideologies and fights over trivial issues."}
+
+{ "create" : { "_id" : "17","_index" : "films", "_type" : "movies" } }
+{ "mid": 17, "language": "Hindi", "starcast" : ["Prabhas", "Rana Daggubati", "Anushka Shetty"],"year": "2016","rating": "8.4","studio": "Ramoji Film City, Hyderabad, Telangana, India","title": "Baahubali: The Beginning", "genres": ["Drama","Adventure","Action"], "description": "In the kingdom of Mahishmati, while pursuing his love, Shivudu learns about the conflict-ridden past of his family and his legacy. He must now prepare himself to face his new-found archenemy."}
+
+{ "create" : { "_id" : "18","_index" : "films", "_type" : "movies" } }
+{ "mid": 18, "language": "English", "starcast" : ["Ginnifer Goodwin", "Jason Bateman", "Idris Elba"],"year": "2016","rating": "8.1","studio": "Walt Disney Animation Studios","title": "Zootopia", "genres": ["Animation","Adventure","Action"], "description": "From the largest elephant to the smallest shrew, the city of Zootopia is a mammal metropolis where various animals live and thrive. When Judy Hopps (Ginnifer Goodwin) becomes the first rabbit to join the police force, she quickly learns how tough it is to enforce the law."}
+
+{ "create" : { "_id" : "19","_index" : "films", "_type" : "movies" } }
+{ "mid": 19, "language": "Spanish", "starcast" : ["Emma Suárez", "Adriana Ugarte", "Daniel Grao"],"year": "2016","rating": "7.1","studio": "Walt Disney Animation Studios","title": "Julieta", "genres": ["Drama","Romance"], "description": "Julieta lives in Madrid with her daughter Antía. They both suffer in silence over the loss of Xoan, Antía's father and Julieta's husband. But at times grief doesn't bring people closer, it drives them apart. When Antía turns eighteen she abandons her mother, without a word of explanation"}
+
+
+
+
+===================
+Search
+--------
+basic search
+http://localhost:9200/films/_search?q=masaan
+
+Search oderby movie id
+-----------------------
+
+POST http://localhost:9200/films/_search
+
+{
+  "sort": [
+    {
+      "mid": {"order": "asc"}
+    }
+  ]
+}
+
+Search with pagination
+-----------------------
+http://localhost:9200/films/_search?q=masaan&from=0&size=10
+
+Search with Aggregation of Facet
+--------------------------------
+POST http://localhost:9200/films/_search
+
+{
+  "sort": [
+    {
+      "mid": {"order": "asc"}
+    }
+  ],
+	"aggregations": {
+      "Genres": {
+         "terms": {"field": "genres"}
+      },
+      "Year Wise": {
+         "terms": {"field": "year"}
+      },
+      "Language": {
+         "terms": {"field": "language"}
+      }
+      
+   }
+}

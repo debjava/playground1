@@ -1,0 +1,48 @@
+/*
+.button {
+  -fx-background-color: blue, blue;
+  -fx-background-radius: 16.4, 15;
+  -fx-background-insets: -1.4, 0;
+  -fx-border-radius: 15;
+  -fx-border-width: 2;
+  -fx-border-color: dimgrey;
+  -fx-padding: 0;
+  -fx-font-size: 1em;
+}
+*/
+/*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );*/
+/*
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+	-fx-font-size: 1.3em;
+    
+}
+*/
+
+.button {
+  -fx-background-color: blue, blue;
+  -fx-background-radius: 16.4, 15;
+  -fx-background-insets: -1.4, 0;
+  -fx-border-radius: 15;
+  -fx-border-width: 2;
+  -fx-border-color: dimgrey;
+  -fx-padding: 0;
+  -fx-font-size: 2em;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  
+}
+
+.fab {
+    -fx-pref-height:40px;   
+    -fx-pref-width:40px;
+    /* -fx-background-color: #0066CC; */
+    -fx-background-color: #098ee8;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-alignment: CENTER;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,1);
+}

@@ -1,0 +1,137 @@
+BRAND
+RAM
+Screen Size
+OS : Android/IOS
+Data Transfer : GSM, 2G, 3G, 4G, EDGE
+Internal Memory
+available : boolean
+
+To delete All data
+DELETE http://localhost:9200/product
+
+To create an index
+==================
+PUT http://localhost:9200/product?pretty
+
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 2
+  },
+  "mappings": {
+    "phone": {
+      "_all": {
+        "enabled": false
+      },
+      "properties": {
+	  "pid": {
+          "type": "integer"
+        },
+        "brand": {
+          "type": "keyword"
+        },
+        "description": {
+          "type": "text"
+        },
+        "ram": {
+          "type": "integer"
+        },
+        "internalMemory": {
+          "type": "integer"
+        },
+        "screenSize": {
+          "type": "float"
+        },
+        "dataTransfer": {
+          "type": "keyword"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "releaseDate": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
+
+To see the list of indices
+==========================
+GET localhost:9200/_cat/indices?v&pretty
+
+To see the index or schema details
+========================
+localhost:9200/product?pretty
+
+To push data into Elastic Search Index
+======================================
+PUT http://localhost:9200/product/phone/1?pretty
+
+{
+		"pid": 1,
+		"brand": "Xiomi", 
+		"description": "Xiomi model phone with cheaper price", 
+		"ram": 2,
+		"internalMemory": 16,
+		"screenSize": 5.5,
+		"dataTransfer": ["2G", "3G"],
+		"available": "yes",
+		"releaseDate": "2014-01-01"
+}
+
+To get all data
+===============
+GET http://localhost:9200/product/_search
+
+To get all data order by id
+===========================
+GET http://localhost:9200/product/_search
+
+{
+  "sort": [
+    {
+      "pid": {"order": "asc"}
+    }
+  ]
+}
+
+Post bulk data
+==============
+POST http://localhost:9200/_bulk
+
+{ "create" : { "_index" : "product", "_type" : "phone", "_id" : "2" } }
+{ "pid": 2, "brand": "Xiomi", "description": "Xiomi model phone 4i with 10K price", "ram": 2, "internalMemory": 16, "screenSize": 5, "dataTransfer": ["2G", "3G"], "available": "yes", "releaseDate": "2014-01-01" }
+{ "create" : { "_index" : "product", "_type" : "phone", "_id" : "3" } }
+{ "pid": 3, "brand": "LG", "description": "LG phone developed from google with 15K price", "ram": 2, "internalMemory": 20, "screenSize": 5.7, "dataTransfer": ["2G", "3G", "4G"], "available": "yes", "releaseDate": "2015-03-02" }
+{ "create" : { "_index" : "product", "_type" : "phone", "_id" : "4" } }
+{ "pid": 4, "brand": "SAMSUNG", "description": "Korean phone made by Samsung with 3G enabled for India only", "ram": 1, "internalMemory": 8, "screenSize": 4.7, "dataTransfer": ["GSM","3G"], "available": "yes", "releaseDate": "2015-03-02" }
+{ "create" : { "_index" : "product", "_type" : "phone", "_id" : "5" } }
+{ "pid": 5, "brand": "SONY", "description": "Sony corp developed basic version of samrt phone", "ram": 1, "internalMemory": 8, "screenSize": 4.8, "dataTransfer": ["GSM","3G"], "available": "yes", "releaseDate": "2013-07-02" }
+
+Facet Search or Aggreegation in ES
+===================================
+GET http://localhost:9200/product/_search
+
+{
+  "sort": [
+    {
+      "pid": {"order": "asc"}
+    }
+  ],
+	"aggregations": {
+      "Brand Names": {
+         "terms": {"field": "brand"}
+      },
+      "Ram Size": {
+         "terms": {"field": "ram"}
+      }
+   }
+}
+
+Reference : https://blog.madewithlove.be/post/faceted-search-using-elasticsearch/
+
+=======================================================================================
+searching in es
+
+http://localhost:9200/product/_search?q=lg

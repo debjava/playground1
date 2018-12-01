@@ -1,0 +1,54 @@
+Docker Contents
+What is Docker?
+Why Docker ?
+Advantages of Docker
+Top companies using docker
+Docker Alternatives
+
+What are containers?
+
+Docker Basic Commands
+https://www.tutorialspoint.com/docker/docker_containers.htm
+https://www.javatpoint.com/docker-introduction
+https://www.javatpoint.com/docker-features
+Docker Installation
+https://www.tutorialspoint.com/docker/docker_images.htm
+https://www.tutorialspoint.com/docker/docker_hub.htm
+Docker Engine - https://docs.docker.com/engine/docker-overview/#docker-engine
+
+Disadvantages of Docker
+
+sudo dpkg -i /<your path>/package.deb
+https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/docker-ce_17.03.0~ce-0~ubuntu-xenial_amd64.deb
+https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-from-a-package
+
+A server which is a type of long-running program called a daemon process (the dockerd command).
+
+A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.
+
+A command line interface (CLI) client (the docker command).
+=====================================================================================================
+https://medium.com/flow-ci/introduction-to-containers-concept-pros-and-cons-orchestration-docker-and-other-alternatives-9a2f1b61132c
+
+https://coreos.com/blog/migrating-from-fleet-to-kubernetes.html
+
+https://www.g2crowd.com/products/docker/competitors/alternatives
+
+https://www.contino.io/insights/beyond-docker-other-types-of-containers
+
+https://www.slant.co/options/11650/alternatives/~docker-swarm-alternatives
+
+----
+https://docs.docker.com/engine/docker-overview/#docker-objects
+https://www.tutorialspoint.com/docker/docker_hub.htm
+https://www.javatpoint.com/docker-tutorial
+https://docker-curriculum.com/
+
+
+
+
+
+
+
+
+https://spring.fabric8.io/

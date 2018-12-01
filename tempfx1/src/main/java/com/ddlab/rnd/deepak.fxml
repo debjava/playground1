@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ddlab.rnd.DeepakController">
+   <children>
+      <Button layoutX="367.0" layoutY="60.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Deepak" />
+      <CheckBox layoutX="258.0" layoutY="124.0" mnemonicParsing="false" text="CheckBox" onMouseClicked="#checkClick1" fx:id="checkId"/>
+      <CheckBox layoutX="258.0" layoutY="171.0" mnemonicParsing="false" text="CheckBox" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.collections.*?>
+
+<AnchorPane fx:id="systemAnchorPaneId" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="762.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ddlab.rnd.ui.system.SystemController">
+   <children>
+      <TitledPane collapsible="false" layoutX="15.0" layoutY="41.0" prefHeight="416.0" prefWidth="753.0" text="VxRail Physical Configuration">
+         <content>
+            <AnchorPane prefHeight="345.0" prefWidth="670.0" style="-fx-border-width: 2;">
+               <children>
+                  <JFXTextField fx:id="ntpServerIpId" focusColor="#2196f3" labelFloat="true" layoutX="14.0" layoutY="22.0" prefHeight="23.0" prefWidth="283.0" promptText="NTP Server IP" />
+                  <JFXButton fx:id="ipAddBtnId" layoutX="309.0" layoutY="29.0" mnemonicParsing="false" onAction="#onNTPServerAddition" styleClass="roundButton" text="+" />
+                     <!-- <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font> -->
+                  <!-- </Button> -->
+                  <ComboBox fx:id="vendorComboId" layoutX="419.0" layoutY="24.0" prefHeight="39.0" prefWidth="299.0" promptText="Select Vendor">
+                  	<items>
+				       	<FXCollections fx:factory="observableArrayList">
+					      	<String fx:value="BROCADE" />
+					      	<String fx:value="CISCOCatalyst" />
+					      	<String fx:value="DELL" />
+				       </FXCollections>
+				     </items>
+                  </ComboBox>
+                  <ComboBox fx:id="modelComboId" layoutX="419.0" layoutY="87.0" prefHeight="39.0" prefWidth="299.0" promptText="Select Model" />
+                  <ComboBox fx:id="versionComboId" layoutX="419.0" layoutY="149.0" prefHeight="39.0" prefWidth="299.0" promptText="Select Version" />
+                  <ComboBox fx:id="networkPortComboId" layoutX="419.0" layoutY="217.0" prefHeight="39.0" prefWidth="299.0" promptText="Select Network Port" />
+                  <ComboBox fx:id="networkPortComboId" layoutX="419.0" layoutY="301.0" prefHeight="39.0" prefWidth="299.0" promptText="Select Network Port" />
+                  <Label layoutX="14.0" layoutY="149.0" prefHeight="27.0" prefWidth="287.0" text="NTP Server IPs" underline="true" />
+                  <AnchorPane fx:id="ntpServerIpAnchorPaneId" layoutX="14.0" layoutY="176.0" prefHeight="123.0" prefWidth="288.0" />
+                  <JFXTextField fx:id="ntpHostNameId" focusColor="#2196f3" labelFloat="true" layoutX="16.0" layoutY="299.0" prefHeight="43.0" prefWidth="283.0" promptText="NTP Server Host Name" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="463.0" prefHeight="198.0" prefWidth="753.0" text="VxRail dedicated ESRS IP Address">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="256.0">
+               <children>
+                  <AnchorPane layoutY="3.0" prefHeight="167.0" prefWidth="747.0">
+                     <children>
+                        <JFXToggleButton fx:id="esrsIpToggleId" contentDisplay="RIGHT" layoutX="32.0" layoutY="14.0" onAction="#onClickESRSToggleBtn" prefHeight="70.0" prefWidth="262.0" text="Enable ESRS IP Address" toggleColor="#2d93db"/>
+                        <JFXTextField fx:id="ipAdrsTextId" focusColor="#2196f3" labelFloat="true" layoutX="322.0" layoutY="30.0" prefHeight="39.0" prefWidth="336.0" promptText="IP Address" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <JFXButton fx:id="nextBtnId" layoutX="685.0" layoutY="670.0" mnemonicParsing="false" onAction="#onNextAction" prefHeight="37.0" prefWidth="80.0" text="Next &gt;&gt;" styleClass="JFXButton" />
+   </children>
+</AnchorPane>

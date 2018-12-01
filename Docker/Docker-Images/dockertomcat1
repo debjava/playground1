@@ -1,0 +1,6 @@
+FROM java:8
+MAINTAINER Debadatta Mishra
+EXPOSE 8080
+RUN mkdir -p /home/piku/docker-tom
+
+# ADD go /usr/local/

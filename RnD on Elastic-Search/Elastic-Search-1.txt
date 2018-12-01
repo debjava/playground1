@@ -1,0 +1,100 @@
+
+To create an index
+==================
+PUT http://localhost:9200/person1?pretty
+
+{
+    "settings" : {
+        "number_of_shards" : 3,
+        "number_of_replicas" : 2
+    },
+	"mappings" : {
+		"person": { 
+			"_all":       { "enabled": false  }, 
+			"properties": { 
+				"firstName":    { "type": "text"  }, 
+				"lastName":     { "type": "text"  }, 
+				"age":      { "type": "integer" },
+				"profession": {"type": "keyword"},
+				"place": {"type": "string"}
+		  }
+		}
+	}
+}
+
+To see the list of indices
+==========================
+GET localhost:9200/_cat/indices?v&pretty
+
+To see the index details
+========================
+localhost:9200/person1?pretty
+
+To push data into Elastic Search Index
+======================================
+PUT http://localhost:9200/person1/person/1?pretty
+
+{
+		"firstName": "Deb", 
+		"lastName": "Mishra", 
+		"age": 23,
+		"profession": "Architect",
+		"place": "Bangalore"
+}
+
+To push bulk data in ES
+=======================
+POST http://localhost:9200/_bulk
+
+{ "create" : { "_index" : "person1", "_type" : "person", "_id" : "20" } }
+{"firstName": "Rajat","lastName": "Kapoor", "age": 37,"profession": "Hero","place": "Cuttack"}
+{ "create" : { "_index" : "person1", "_type" : "person", "_id" : "21" } }
+{"firstName": "Nataraj","lastName": "Katra", "age": 40,"profession": "QA Lead","place": "Chennai"}
+{ "create" : { "_index" : "person1", "_type" : "person", "_id" : "22" } }
+{"firstName": "Prasanna","lastName": "Keth", "age": 43,"profession": "Program Manager","place": "Delhi"}
+{ "create" : { "_index" : "person1", "_type" : "person", "_id" : "23" } }
+{"firstName": "Amit","lastName": "Chaterjee", "age": 22,"profession": "Author","place": "Kolkatta"}
+
+To update
+===========
+POST http://localhost:9200/_bulk
+
+{ "update" : {"_id" : "21", "_type" : "person", "_index" : "person1"} }
+{ "doc" : {"firstName": "Abra Ka Dabra"}, "_source": true}
+
+To get all data
+GET http://localhost:9200/person1/person/_search
+
+GET http://localhost:9200/person1/_search
+
+
+To get data with pagination
+===========================
+GET or POST http://localhost:9200/person1/person/_search
+
+{
+    "from" : 0, "size" : 10
+}
+
+To display only specific fields
+===============================
+GET http://localhost:9200/person1/_search
+
+{
+	"_source": ["firstName", "lastName"],
+    "from" : 0, 
+	"size" : 5
+}
+
+To sort
+
+To restrict mandatory fileds
+
+To Delete one document or all
+DELETE http://localhost:9200/person1 (to delete index, all data)
+
+
+
+
+
+

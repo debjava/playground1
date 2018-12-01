@@ -1,0 +1,3 @@
+rootProject.name = 'design-patterns-2018'
+includeFlat 'algorithms-2018'
+

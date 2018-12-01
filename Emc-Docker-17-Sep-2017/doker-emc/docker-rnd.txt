@@ -1,0 +1,15 @@
+docker images
+docker ps
+
+To create docker image
+======================
+docker build -f docker1 -t springdocker .
+
+To save docker image
+docker save -o /home/piku/springdocker.tar springdocker
+
+docker ps -a
+The above command will give the running status of Docker Images
+
+//For tomcat
+https://dkbalachandar.wordpress.com/2016/03/30/docker-file-to-deploy-a-war-file-on-tomcat/

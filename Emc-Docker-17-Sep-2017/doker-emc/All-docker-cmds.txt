@@ -1,0 +1,62 @@
+FROM java:8
+
+MAINTAINER Deb
+
+
+
+# RUN curl -O http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.55/bin/apache-tomcat-7.0.55.tar.gz
+
+
+
+
+
+RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gz
+
+
+
+# http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.22/bin/apache-tomcat-8.0.22.tar.gz
+
+
+
+RUN tar xzf apache-tomcat-7.0.55.tar.gz
+
+ADD restful-basic-security-web.war apache-tomcat-7.0.55/webapps/
+
+CMD apache-tomcat-7.0.55/bin/startup.sh && tail -f apache-tomcat-7.0.55/logs/catalina.out
+
+EXPOSE 8080
+
+To build docker 
+docker build -f <file name> -t rest1
+
+To run in a different port
+docker run -it --rm -p 8888:8080 -t rest1
+
+To run in detached mode
+docker run -it -p 8888:8080 -t -d rest1
+
+save docker image
+docker save rest1 > /home/piku/Desktop/mylogs/rest1.tar
+
+To load docker image
+docker load -i /home/piku/Desktop/mylogs/rest1.tar
+
+
+
+login to docker container
+docker exec -it <continer id>
+
+To see all the docker containers
+
+docker ps -a
+
+
+To remove container
+docker rm <continer id>
+
+
+
+http://localhost:8888/restful-basic-security-web/
+
+http://192.168.119.131:8888/restful-basic-security-web
+
